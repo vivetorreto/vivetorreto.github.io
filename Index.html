@@ -1,1 +1,162 @@
 
+<!DOCTYPE html>
+<html>
+<center>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<title> ALISHA </title>
+<style>
+body {
+background-image: url('https://img.freepik.com/free-photo/space-travel-collage-design_23-2150163791.jpg?t=st=1738150910~exp=1738154510~hmac=34c0af108931e5d9486635ebe01a82275353f7176d88a8c63ae815193c9827ef&w=1060');
+background-size: cover;
+background-position: center;
+height: 100vh;
+margin: 0;
+}
+body {
+font-family: Arial;
+color: #ffffff; /* Changed font color to white */
+size: 12px
+}
+#chat-window {
+width: 300px;
+height: 400px;
+border: 1px solid #ffffff; /* Changed border color to white */
+padding: 10px;
+overflow-y: scroll;
+backdrop-filter: blur(0.3px);
+background-color: rgba(0, 0, 0, 0.5); /* Changed background color to transparent black */
+}
+#user-input {
+width: 100%;
+height: 30px;
+padding: 10px;
+font-size: 16px;
+color: #ffffff; /* Changed font color to white */
+background-color: rgba(0, 0, 0, 0.5); /* Changed background color to transparent black */
+border: 1px solid #ffffff; /* Changed border color to white */
+}
+button {
+color: #ffffff; /* Changed font color to white */
+background-color: rgba(0, 0, 0, 0.5); /* Changed background color to transparent black */
+border: 1px solid #ffffff; /* Changed border color to white */
+}
+button:hover {
+background-color: #4CAF50; /* Changed hover background color to green */
+}
+</style>
+</head>
+<body>
+<h1 style="color: #ffffff;">ALISHA</h1>
+<div id="chat-window"></div>
+<input id="user-input" type="text" placeholder="Type message..."
+   
+   
+  
+  
+ 
+  
+   
+<input type="text" x-webkit-speech placeholder="Type message..." id="user-input">
+<button id="mic-button">MIC</button>
+<button id="send-button" onclick="sendMessage()">Send</button>
+
+<script>
+  const micButton = document.getElementById('mic-button');
+  const user_input = document.getElementById('user-input');
+  const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+
+  recognition.lang = 'en-US';
+  recognition.maxResults = 10;
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    user_input.value = transcript;
+  };
+
+  recognition.onerror = (event) => {
+    console.error('Error:', event.error);
+  };
+
+  micButton.addEventListener('click', async () => {
+    try {
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+      recognition.start();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+</script>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+<script>
+const chatWindow = document.getElementById('chat-window');
+const userInput = document.getElementById('user-input');
+
+
+
+
+
+
+
+
+// Basic AI responses
+const responses = {
+'hi': 'Hello, aap kaise ho?',
+  'hello':'hi,kaise ho?',
+  
+  'main theek hun':'waah jaan kar khushi hui.Kya kar rahe ho?',
+  'kuch nahi bas baitha hun':'accha! to mujhe miss kar rahe the!?',
+  'kuch nahi':'accha! to mujhe miss kar rahe the! hai na?',
+  
+'how are you': 'main to theek hun,aap batao aap kaise ho?',
+'kaisi ho': 'main to theek hun,aap batao aap kaise ho?',
+  
+'main bhi thik hun': 'waah!jaan kar khushi hui.or bataiye aap ka din kaisa raha?',
+'i\'m fine':'chalo accha hai,kya kar rahe ho?',
+  
+  'tumhe yaad':'are baap re,main to sharmaa gayi.',
+  'Tum kaisi ho': 'main to theek hun,aap batao aap kaise ho?',
+'what\'s your name': 'My name is Alisha, nice to meet you!',
+'tumhara naam kya hai': 'mera naam alisha hai,aap se mil kar accha laga!',
+'where are you from': 'I\'m from hazaribag,what a beautiful place.Kabhi aao hazaribag or cannery hill ghoomo.bahot mast jagah hai i bet tumhe pasand aayegi.',
+'kahan se ho': 'I\'m from hazaribag,what a beautiful place.Kabhi aao hazaribag or cannery hill ghoomo.bahot mast jagah hai i bet tumhe pasand aayegi.',
+'who is your developer': 'vivek is my developer.;)',
+// Add more responses here...
+'default': 'I didn\'t understand that. Please try again!'
+};
+
+
+
+//Enter is SEND//
+
+
+function sendMessage() {
+const userMessage = userInput.value.trim();
+if (userMessage) {
+chatWindow.innerHTML += `<p style="color: #ffffff;">You: ${userMessage}</p>`;
+const response = responses[userMessage.toLowerCase()] || responses['default'];
+chatWindow.innerHTML += `<p style="color: #ffffff;">Alisha: ${response}</p>`;
+userInput.value = '';
+}
+}
+userInput.addEventListener('keypress', (e) => {
+if (e.key === 'Enter') {
+sendMessage();
+}
+});
+</script>
+</center>
+</body>
+</html>
